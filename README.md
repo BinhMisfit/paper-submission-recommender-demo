@@ -1,10 +1,6 @@
-# An Efficient Scientific Submission Recommendation System for Computer Science
+# Paper Submission Recommendation Demo
 
-Our paper "S2RSCS: An Efficient Scientific Submission Recommendation System for Computer Science" has been accepted at the conference IEAAEI 2020 in Japan.
-
-In this paper, we have researched the Recommendation System that can predict which journals fit with your paper. We use the dataset of authors in this paper 
-
-
+There are demo codes for our proposed paper submission recommendation platform.
 #  Requirements
 
 * Python 3.7
