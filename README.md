@@ -18,6 +18,8 @@ In this paper, we have researched the Recommendation System that can predict whi
 
     python app.py
     
+Open your browser at <a href="http://127.0.0.1:5000/"
+
 # Run with notebook
 
 You should run this code in https://colab.research.google.com
