@@ -7,9 +7,12 @@ In this paper, we have researched the Recommendation System that can predict whi
 
 #  Requirements
 
-This code was tested with python 3.6.8 in https://colab.research.google.com
+* Python 3.7
+* This code was tested with python 3.7 in https://colab.research.google.com
 
-Packages:  pandas, numpy,  textblob, nltk, re, scikit-learn and pickle 
+# Install
+
+  pip install -r requirements.txt
 
 #  Dataset
 
@@ -26,6 +29,7 @@ example original data and pre-processed data:
 | Keyword       |  "PAC-Bayes bound, support vector machine, generalization capability prediction, classiﬁcation"|  "pac-bayes bound”, “support vector machine”, “generalization capability prediction”, “classiﬁcation"            | 
 
 # Run
+
 You should run this code in https://colab.research.google.com
 
 Firstly, pushing 2 data re_data_train and re_data_test as the following:
