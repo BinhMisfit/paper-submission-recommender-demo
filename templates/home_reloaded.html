@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="css/home.css  " rel="stylesheet">
+
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">AISIA Lab</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Contact
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<header class="rounded mb-0">
+    <div class="container text-center">
+        <h1 class="title display-4">
+            <span class="span-title" style="opacity: 0.8"><b>Submission</b></span> Recommender System
+        </h1>
+    </div>
+
+    <div class="container col-12 rounded section">
+        <div class="col-12 text-center">
+            <p>Provide top relevant venues, conferences or journals to your research</p>
+        </div>
+    </div>
+</header>
+<!-- Input From User -->
+<div class="container row col-md-12 text-center rounded mb-auto"
+     style="margin-left: 0px; margin-top: 20px; padding: 50px; padding-top: 20px; background-color: #227aa0; padding-bottom:10px;">
+    <div class="row col-12">
+        <h3 style="padding-bottom: 10px; color:white;">
+            <span>Choose a base model and let Publication Recommender do the work!</span>
+        </h3>
+    </div>
+    <div class="row col-4">
+        <div class="row col-12" style="padding-top: 50px">
+            <div class="col-6">
+                <h5>
+                    <span style="color:white;"><i class="fas fa-database" style="color:white;"></i> Based Model</span>
+                </h5>
+            </div>
+            <div class="col-6">
+                <select id="location" class="selectpicker show-tick"
+                        data-actions-box="true" data-width="fit">
+                    <option>Springer</option>
+                    <option>Computer Science</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row col-8 align-self-center rounded" style="background-color: #1a6381; padding:20px">
+        <form class="container row col-md-12 text-center rounded mb-auto" action="./Predict" method="POST">
+            <div class="col-6">
+                <div class="form-group" style="text-align: left;">
+                    <h5 style="color:white;">Title</h5>
+                    <textarea id="title" name="title" class="form-control"
+                              placeholder="Please input the title of your work here">{{ title }}</textarea>
+                </div>
+                <div class="form-group" style="padding-top: 0px; text-align: left;">
+                    <h5 style="color:white;">Keyword</h5>
+                    <textarea id="keyword" name="keyword" class="form-control"
+                              placeholder="Please input list keywords of your work here">{{ keyword }}</textarea>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Abstract</span>
+                    </div>
+                    <textarea id="abstract" name="abstract" class="form-control"
+                              placeholder="Please input the abtract of your work here"
+                              style="height: 210px;">{{ abstract }}</textarea>
+                </div>
+            </div>
+            <div class="col-md-8 align-self-center">
+                <button type="submit" class="btn btn-block btn-large" style="background-color: #F2751A; color: white;">
+                    Recommend
+                </button>
+            </div>
+            <div class="col-md-4 align-self-center">
+                <button type="button" class="btn btn-block btn-large btn-warning" style="color: white;"
+                        onclick="document.getElementById('content').innerHTML = ''; document.getElementById('title').value = ''; document.getElementById('keyword').value = ''; document.getElementById('abstract').value = ''">
+                    Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div id="content" class="row col-12 rounded"
+     style="background-color: white; margin-left: 0px;, padding: 30px; margin-top:20px; margin-bottom:20px;">
+    <div class="container col-3 rounded content">
+
+    </div>
+    <div id="jar" class="container offset-1 col-8">
+        <h3 style="color: #227aa0; text-align: center; padding-top:10px;"><i> Top Recommendations </i></h3>
+        <div class="row col-12 rounded content">
+
+            <h5 class="col-12"><a>1.{{ content0 }}</a></h5>
+            <div class="col-12">
+                <p>predicted value: {{ score0 }}</p>
+            </div>
+        </div>
+
+        <div class="row col-12 rounded content">
+
+            <h5 class="col-12"><a>2.{{ content1 }}</a></h5>
+            <div class="col-12">
+                <p>predicted value: {{ score1 }}</p>
+            </div>
+        </div>
+
+        <div class="row col-12 rounded content">
+
+            <h5 class="col-12"><a>3.{{ content2 }}</a></h5>
+            <div class="col-12">
+                <p>predicted value: {{ score2 }}</p>
+            </div>
+        </div>
+
+        <div class="row col-12 rounded content">
+
+            <h5 class="col-12"><a>4.{{ content3 }}</a></h5>
+            <div class="col-12">
+                <p>predicted value: {{ score3 }}</p>
+            </div>
+        </div>
+
+        <div class="row col-12 rounded content">
+
+            <h5 class="col-12"><a>5.{{ content4 }}</a></h5>
+            <div class="col-12">
+                <p>predicted value: {{ score4 }}</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-12 text-center">
+        <nav>
+            <ul class="pagination justify-content-center pagination-sm">
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Footer -->
+<section id="footer">
+    <div class="row bg-dark rounded">
+        <div class="container col-12">
+            <ul class="list-unstyled list-inline text-center" style="font-size: xx-large;">
+                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i
+                        class="fa fa-envelope"></i></a></li>
+            </ul>
+        </div>
+        </hr>
+    </div>
+    </div>
+</section>
+<!-- ./Footer -->
+
+<!-- JS -->
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="fontawesome-free-5.9.0-web/js/all.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
+
+</body>
+</html>
